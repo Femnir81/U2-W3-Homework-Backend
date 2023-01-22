@@ -12,11 +12,8 @@
     </ul>
 </div>
 
-<h2>Index</h2>
+<h1 class="text-center text-danger my-5">Lista Pizze</h1>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -49,17 +46,21 @@
             @Html.DisplayFor(modelItem => item.Prezzo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TempoPreparazione)
+            @Html.DisplayFor(modelItem => item.TempoPreparazione) minuti
         </td>
-        <td>
+        <td class="overflow-hidden" style="text-overflow:ellipsis; white-space:nowrap; max-width:400px">
             @Html.DisplayFor(modelItem => item.Ingredienti)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Modifica", "Edit", new { id=item.ID }, new {@class = "btn btn-warning"})
+            @Html.ActionLink("Dettagli", "Details", new { id=item.ID }, new {@class = "btn btn-info"})
+            @Html.ActionLink("Cancella", "Delete", new { id=item.ID }, new {@class = "btn btn-danger"})
         </td>
     </tr>
 }
 
 </table>
+
+<p class="text-center">
+    @Html.ActionLink("Aggiungi", "Create", null, new {@class="btn btn-danger"})
+</p>

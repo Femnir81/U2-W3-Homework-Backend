@@ -12,11 +12,8 @@
     </ul>
 </div>
 
-<h2>ListaOrdine</h2>
+<h1 class="text-center text-danger my-5">ListaOrdine</h1>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -28,13 +25,13 @@
         <th>
             @Html.DisplayNameFor(model => model.Pizze.Nome)
         </th>
-        <th>
+        <th class="text-center">
             @Html.DisplayNameFor(model => model.Quantita)
         </th>
-        <th>
+        <th class="text-center">
             @Html.DisplayNameFor(model => model.Pizze.Prezzo)
         </th>
-        <th>
+        <th class="text-center">
             @Html.DisplayNameFor(model => model.OrdineConsegnato)
         </th>
         <th></th>
@@ -51,20 +48,20 @@
         <td>
             @Html.DisplayFor(modelItem => item.Pizze.Nome)
         </td>
-        <td>
+        <td class="text-center">
             @Html.DisplayFor(modelItem => item.Quantita)
         </td>
-        <td>
+        <td class="text-center">
             @{
                 var prezzoPizze = (item.Pizze.Prezzo * item.Quantita);
                 ViewBag.PrezzoPizzaOrdine = prezzoPizze.ToString("c");
             }
             @ViewBag.PrezzoPizzaOrdine
         </td>
-        <td>
+        <td class="text-center">
             @Html.CheckBoxFor(modelItem => item.OrdineConsegnato, new {@class="form-check-input", disabled="true"})
         <td>
-            @Html.ActionLink("Consegnato", "Consegnato", new { id=item.ID })
+            @Html.ActionLink("Consegnato", "Consegnato", new { id=item.ID }, new {@class="btn btn-danger"})
         </td>
     </tr>
 }
