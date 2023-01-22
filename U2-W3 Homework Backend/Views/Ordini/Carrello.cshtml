@@ -1,0 +1,91 @@
+﻿@model IEnumerable<U2_W3_Homework_Backend.Models.Ordini>
+
+@{
+    ViewBag.Title = "Carrello";
+    @*foreach (var item in Model)
+        {
+            var prezzoPizze = item.Pizze.Prezzo * item.Quantita;
+            ViewBag.PrezzoPizze = prezzoPizze;
+        }*@
+}
+
+<h1 class="text-center text-danger my-5">Carrello</h1>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pizze.Foto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pizze.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantita)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pizze.Prezzo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nota)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="~/Content/Img/@Html.DisplayFor(modelItem => item.Pizze.Foto)" width="150" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pizze.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantita)
+            </td>
+            <td>
+                @{
+                    var prezzoPizze = (item.Pizze.Prezzo * item.Quantita);
+                    ViewBag.PrezzoPizze = prezzoPizze.ToString("c");
+                }
+                @ViewBag.PrezzoPizze
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nota)
+            </td>
+            <td>
+                @Html.ActionLink("Modifica", "Edit", new { id = item.ID }, new { @class = "btn btn-warning" })
+                <button type="button" class="btn btn-danger my-1" data-bs-toggle="modal" data-bs-target="#delete">
+                    Cancella
+                </button>
+                <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="deleteLabel">Conferma acquisto</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Vuoi cancellare l'ordine?
+                            </div>
+                            <div class="modal-footer">
+                                <div class="form-group">
+                                    @Html.ActionLink("Cancella", "Delete", new { id = item.ID }, new {@class="btn btn-danger"})
+                                </div>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>
+                
+
+
+
+<div class="container">
+    @{ Html.RenderAction("PartialViewCheckout", "Ordini");}
+</div>

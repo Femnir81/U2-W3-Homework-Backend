@@ -1,0 +1,32 @@
+﻿@model IEnumerable<U2_W3_Homework_Backend.Models.Pizze>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center my-5">Pizze</h2>
+
+<div class="container d-flex">
+
+    @foreach (var item in Model)
+    {
+        <div class="card w-25 m-3" style="max-width:200px">
+            <img src="/Content/Img/@Html.DisplayFor(modelItem => item.Foto)" class="card-img-top" alt="..." style="width:100%">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Nome)</h5>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.Ingredienti).</p>
+                @Html.ActionLink("Dettagli", "Details", new { id = item.ID }, new { @class = "btn btn-info" })
+            </div>
+        </div>
+
+        @*<td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>*@
+
+    }
+
+</div>
+
+

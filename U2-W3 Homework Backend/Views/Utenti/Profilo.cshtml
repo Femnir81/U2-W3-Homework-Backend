@@ -1,0 +1,62 @@
+﻿@model U2_W3_Homework_Backend.Models.Utenti
+
+@{
+    ViewBag.Title = "Profilo";
+}
+
+<h1 class="text-center text-danger my-5">Profilo</h1>
+
+<div>
+    <dl class="d-flex justify-content-around">
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.Username)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Username)
+            </dd>
+        </div>
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+        </div>
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.Cognome)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cognome)
+            </dd>
+        </div>
+    </dl>
+</div>
+
+<div class="container my-5">
+    <div>
+        <p>
+            <button class="btn btn-danger w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInConsegna" aria-expanded="false" aria-controls="collapseInConsegna">Ordini in Consegna</button>
+        </p>
+        <div class="collapse" id="collapseInConsegna">
+            <div class="card card-body">
+                @{Html.RenderAction("PartialViewOrdiniInConsegna", "Ordini");}
+            </div>
+        </div>
+    </div>
+    <div>
+        <p>
+            <button class="btn btn-danger w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseConsegnati" aria-expanded="false" aria-controls="collapseConsegnati">Ordini Consegnati</button>
+        </p>
+        <div class="collapse" id="collapseConsegnati">
+            <div class="card card-body">
+                @{Html.RenderAction("PartialViewOrdiniConsegnati", "Ordini");}
+            </div>
+        </div>
+    </div>
+</div>

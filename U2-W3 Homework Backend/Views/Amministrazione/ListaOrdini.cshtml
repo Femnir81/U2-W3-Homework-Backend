@@ -1,0 +1,72 @@
+﻿@model IEnumerable<U2_W3_Homework_Backend.Models.Ordini>
+
+@{
+    ViewBag.Title = "ListaOrdine";
+}
+
+<div class="container d-flex justify-content-center my-2">
+    <ul class="navbar-nav under fs-6 d-flex flex-row justify-content-center">
+        <li class="nav-item me-2">@Html.ActionLink("Amministrazione", "Index", "Amministrazione", null, new { @class = "text-danger me-2", style = "text-decoration:none;" })</li>
+        <li class="nav-item me-2">@Html.ActionLink("Lista Ordini", "ListaOrdini", "Amministrazione", null, new { @class = "text-danger me-2", style = "text-decoration:none;" })</li>
+        <li class="nav-item me-2">@Html.ActionLink("Riepilogo", "Riepilogo", "Amministrazione", null, new { @class = "text-danger me-2", style = "text-decoration:none;" })</li>
+    </ul>
+</div>
+
+<h2>ListaOrdine</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Utenti.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Utenti.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pizze.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantita)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pizze.Prezzo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrdineConsegnato)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Utenti.Nome) @Html.DisplayFor(modelItem => item.Utenti.Cognome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Utenti.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pizze.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantita)
+        </td>
+        <td>
+            @{
+                var prezzoPizze = (item.Pizze.Prezzo * item.Quantita);
+                ViewBag.PrezzoPizzaOrdine = prezzoPizze.ToString("c");
+            }
+            @ViewBag.PrezzoPizzaOrdine
+        </td>
+        <td>
+            @Html.CheckBoxFor(modelItem => item.OrdineConsegnato, new {@class="form-check-input", disabled="true"})
+        <td>
+            @Html.ActionLink("Consegnato", "Consegnato", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

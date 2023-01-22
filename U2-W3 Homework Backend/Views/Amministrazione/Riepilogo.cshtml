@@ -1,0 +1,57 @@
+﻿@model U2_W3_Homework_Backend.Models.Ordini
+
+@{
+    ViewBag.Title = "Riepilogo";
+}
+
+<div class="container d-flex justify-content-center my-2">
+    <ul class="navbar-nav under fs-6 d-flex flex-row justify-content-center">
+        <li class="nav-item me-2">@Html.ActionLink("Amministrazione", "Index", "Amministrazione", null, new { @class = "text-danger me-2", style = "text-decoration:none;" })</li>
+        <li class="nav-item me-2">@Html.ActionLink("Lista Ordini", "ListaOrdini", "Amministrazione", null, new { @class = "text-danger me-2", style = "text-decoration:none;" })</li>
+        <li class="nav-item me-2">@Html.ActionLink("Riepilogo", "Riepilogo", "Amministrazione", null, new { @class = "text-danger me-2", style = "text-decoration:none;" })</li>
+    </ul>
+</div>
+
+<h2>Riepilogo</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <p>Numero Totale Ordini Consegnati</p>
+            <p id="totaleOrdini"></p>
+        </div>
+        <div class="col-6">
+            <p>Totale Incasso della Giornata</p>
+            <p id="totaleIncasso"></p>
+        </div>
+    </div>
+</div>
+
+<div class="container d-flex justify-content-center align-items-center">
+    <input id="calendario" class="form-control my-5" type="date" />
+    <button id="ricerca" class="btn btn-primary ms-3" style="height:38px">Ricerca</button>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: 'OrdiniConsegnati',
+            type: 'GET',
+            success: function (TotOrdini) {
+                $('#totaleOrdini').text(TotOrdini);
+            }
+        })
+
+        $('#ricerca').click(function () {
+            var data = $('#calendario').val();
+            $.ajax({
+                url: 'IncassoGiornata',
+                type: 'GET',
+                data: { 'data' : data },
+                success: function (totale) {
+                    $('#totaleIncasso').text(totale + '€');
+                }
+            })
+        })
+    })
+</script>

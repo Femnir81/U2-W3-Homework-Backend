@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Applicazione ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+<body class="m-0 p-0">
+    <nav class="navbar navbar-expand-lg bg-primary">
+        <div class="container-fluid d-flex align-items-center">
+            <a class="navbar-brand text-white fs-1 fw-bold m-0" href="#">Pizzeria</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav under fs-6" style="margin-left: -320px;">
+                    <li class="nav-item me-2">
+                        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "text-white me-2", style = "text-decoration:none;" })
+                    </li>
+                    <li class="nav-item me-2">
+                        @Html.ActionLink("Amministrazione", "Index", "Amministrazione", null, new { @class = "text-white me-2", style = "text-decoration:none;" })
+                    </li>
+                    <li class="nav-item me-2">
+                        @Html.ActionLink("Login", "Login", "Utenti", null, new { @class = "text-white me-2", style = "text-decoration:none;" })
+                    </li>
+                    <li class="nav-item me-2">
+                        @Html.ActionLink("Register", "Register", "Utenti", null, new { @class = "text-white me-2", style = "text-decoration:none;" })
+                    </li>
+                    <li class="nav-item me-2">
+                        @Html.ActionLink("Logout", "Logout", "Utenti", null, new { @class = "text-white me-2", style = "text-decoration:none;" })
+                    </li>
+                    @*@if (User.Identity.IsAuthenticated)
+        {
+            <li class="nav-item me-2">
+                @Html.ActionLink("Gestione", "Index", "Gestione", null, new { @class = "text-white me-2", style = "text-decoration:none;" })
+            </li>
+
+            <li class="nav-item me-2">
+                @Html.ActionLink("Logout", "Logout", "Home", null, new { @class = "text-white me-2", style = "text-decoration:none" })
+            </li>
+        }*@
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Applicazione ASP.NET</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<U2_W3_Homework_Backend.Models.Ordini>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pizze.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantita)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pizze.Prezzo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IndirizzoSpedizione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nota)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pizze.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantita)
+            </td>
+            <td>
+                @{
+                    var prezzoPizze = (item.Pizze.Prezzo * item.Quantita);
+                    ViewBag.PrezzoTotale1 = prezzoPizze.ToString("c");
+                }
+                @ViewBag.PrezzoTotale1
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IndirizzoSpedizione)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nota)
+            </td>
+        </tr>
+    }
+
+</table>
